@@ -1,0 +1,32 @@
+{
+	"devDependencies": {
+		"@prettier/plugin-php": "^0.22.4",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.4.2",
+		"prettier": "^3.5.3"
+	},
+	"scripts": {
+		"phpstan": "composer exec -- phpstan analyse",
+		"rector": "composer exec -- rector process",
+		"prettier": "npx prettier --write ./src ./tests",
+		"test": "composer exec -- pest"
+	},
+	"lint-staged": {
+		"*.php": [
+			"php -l",
+			"npm run phpstan",
+			"npm run rector",
+			"npm run prettier",
+			"npm run test"
+		]
+	},
+	"prettier": {
+		"plugins": [
+			"@prettier/plugin-php"
+		],
+		"tabWidth": 4,
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "all"
+	}
+}
